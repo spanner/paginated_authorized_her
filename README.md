@@ -36,6 +36,7 @@ It will contain the value of either `RequestStore.store[:auth_token]` or `Reques
 
 Your API definition will look something like this:
 
+    require 'paginated_authorized_her'
     DROOM = Her::API.new base_uri: "http://example.com/api" do |c|
       c.use Faraday::Request::UrlEncoded
       c.use PaginatedAuthorizedHer::Middleware::TokenAuth
@@ -44,10 +45,9 @@ Your API definition will look something like this:
     end
 
 
-## Configuration
+## Requirements
 
-We use Settingslogic and Requeststore. Your settings should include:
-
+We assume the use of Requeststore to hold globals. Otherwise, only Her.
 
 
 ## Contributing
