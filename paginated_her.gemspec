@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'paginated_authorized_her/version'
+require 'paginated_her/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "paginated_authorized_her"
-  spec.version       = PaginatedAuthorizedHer::VERSION
+  spec.name          = "paginated_her"
+  spec.version       = PaginatedHer::VERSION
   spec.authors       = ["William Ross"]
   spec.email         = ["will@spanner.org"]
   spec.description   = %q{Adds token auth and pagination to Her}

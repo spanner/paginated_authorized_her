@@ -1,4 +1,4 @@
-module PaginatedAuthorizedHer
+module PaginatedHer
   module Model
     extend ActiveSupport::Concern
     include Her::Model

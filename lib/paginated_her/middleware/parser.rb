@@ -1,6 +1,6 @@
 # https://gist.github.com/letronje/437b4a72225eb53366c6
 #
-module PaginatedAuthorizedHer::Middleware
+module PaginatedHer::Middleware
   class Parser < Faraday::Response::Middleware
 
     def on_complete(env)

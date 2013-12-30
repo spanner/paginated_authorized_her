@@ -2,7 +2,7 @@
 # apply the proper access controls. It does that by coming back to us for permissions, so the handshake could do with 
 # tidying up, but the first priority is to keep the chain secure.
 
-module PaginatedAuthorizedHer::Middleware
+module PaginatedHer::Middleware
   class TokenAuth < Faraday::Middleware
 
     def call(env)
