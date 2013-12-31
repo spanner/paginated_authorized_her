@@ -5,5 +5,7 @@ require 'paginated_her/middleware/parser'
 require "paginated_her/version"
 
 module PaginatedHer
-  # Your code goes here...
+  class Error < StandardError; end
+  class AuthRequired < Error; end
+  class RequestFailed < Error; end
 end

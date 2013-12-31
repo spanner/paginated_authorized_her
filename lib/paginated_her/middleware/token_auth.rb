@@ -1,7 +1,3 @@
-# Here we inject an authorization header for the current user so that the remote service (ie CDB, usually) can 
-# apply the proper access controls. It does that by coming back to us for permissions, so the handshake could do with 
-# tidying up, but the first priority is to keep the chain secure.
-
 module PaginatedHer::Middleware
   class TokenAuth < Faraday::Middleware
 
