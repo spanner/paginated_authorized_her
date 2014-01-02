@@ -4,8 +4,9 @@ module PaginatedHer::Middleware
   class Parser < Faraday::Response::Middleware
 
     def on_complete(env)
-      response = env[:response]
-      if response.success?
+      response = env[:response] 
+      case response.status
+      when 200
         json = parsed_response(env)
         errors = json.delete(:errors) || {}
         metadata = json.delete(:metadata) || []
@@ -14,15 +15,19 @@ module PaginatedHer::Middleware
           body[:pagination] = JSON.parse(env[:response_headers]["X-Pagination"], :symbolize_names => true)
         end
         env[:body] = body
+
+      when 404
+        Rails.logger.warn "!!  Missing resource"
+        body = {:data => {}, :errors => "Resource Not Found", :metadata => []}
+        env[:body] = body
+
+      when 401
+        raise PaginatedHer::AuthRequired
+
       else
-        if response.status == 404
-          body = {:data => {}, :errors => "Resource Not Found", :metadata => json.delete(:metadata) || []}
-          env[:body] = body
-        if response.status == 401
-          raise PaginatedHer::AuthRequired
-        else
-          raise PaginatedHer::RequestFailed
-        end
+        Rails.logger.warn "!!  Failed request"
+        Rails.logger.ap env[:request]
+        raise PaginatedHer::RequestFailed
       end
     end
     
