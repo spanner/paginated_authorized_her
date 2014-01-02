@@ -15,6 +15,9 @@ module PaginatedHer::Middleware
         end
         env[:body] = body
       else
+        if response.status == 404
+          body = {:data => {}, :errors => "Resource Not Found", :metadata => json.delete(:metadata) || []}
+          env[:body] = body
         if response.status == 401
           raise PaginatedHer::AuthRequired
         else
