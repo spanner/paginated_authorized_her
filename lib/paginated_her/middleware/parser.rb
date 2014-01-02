@@ -25,8 +25,9 @@ module PaginatedHer::Middleware
         raise PaginatedHer::AuthRequired
 
       else
-        Rails.logger.warn "!!  Failed request: #{env[:request].inspect}"
-        raise PaginatedHer::RequestFailed
+        Rails.logger.warn "!!  Failed request with status #{request.status.inspect}: #{env[:request].inspect}"
+        body = {:data => {}, :errors => "Request failed with status #{request.status.inspect}", :metadata => []}
+        env[:body] = body
       end
     end
     
