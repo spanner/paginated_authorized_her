@@ -4,8 +4,13 @@ module PaginatedHer::Middleware
   class Parser < Faraday::Response::Middleware
 
     def on_complete(env)
-      response = env[:response] 
-      case response.status
+      Rails.logger.warn "on_complete: env is:"
+      Rails.logger.ap env
+      # faraday 0.9.0
+      status = env[:status] 
+      # faraday 0.8.x
+      status ||= env[:response].status if env[:response] 
+      case status
       when 200, 201
         json = parsed_response(env)
         errors = json.delete(:errors) || {}
