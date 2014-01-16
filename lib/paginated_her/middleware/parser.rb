@@ -4,8 +4,6 @@ module PaginatedHer::Middleware
   class Parser < Faraday::Response::Middleware
 
     def on_complete(env)
-      Rails.logger.warn "on_complete: env is:"
-      Rails.logger.ap env
       # faraday 0.9.0
       status = env[:status] 
       # faraday 0.8.x
