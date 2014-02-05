@@ -4,7 +4,18 @@ module PaginatedHer
     include Her::Model
     
     included do
-      self.include_root_in_json true
+      include_root_in_json true
+      after_save :decache
+    end
+    
+    def decache
+      if $cache
+        pk = self.attributes[self.class.primary_key]
+        path = self.class.resource_path.gsub(/:id/, pk.to_s)
+        cache_key = "/api/#{path}"
+        p "deleting #{cache_key} from #{$cache.inspect}"
+        $cache.delete cache_key
+      end
     end
     
     module ClassMethods

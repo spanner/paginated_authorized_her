@@ -8,6 +8,7 @@ module PaginatedHer::Middleware
       status = env[:status] 
       # faraday 0.8.x
       status ||= env[:response].status if env[:response] 
+
       case status
       when 200, 201
         json = parsed_response(env)
