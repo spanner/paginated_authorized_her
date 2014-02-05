@@ -6,12 +6,23 @@ module PaginatedHer
     included do
       include_root_in_json true
       after_save :decache
+      after_create :decache_lists
     end
     
     def decache
       if $cache
         pk = self.attributes[self.class.primary_key]
         path = self.class.resource_path.gsub(/:id/, pk.to_s)
+        cache_key = "/api/#{path}"
+        p "deleting #{cache_key} from #{$cache.inspect}"
+        $cache.delete cache_key
+      end
+    end
+
+    def decache_lists
+      if $cache
+        pk = self.attributes[self.class.primary_key]
+        path = self.class.collection_path
         cache_key = "/api/#{path}"
         p "deleting #{cache_key} from #{$cache.inspect}"
         $cache.delete cache_key
