@@ -35,7 +35,7 @@ module PaginatedHer
       def initialize_collection(parsed_data={})
         collection = Her::Model::Attributes.initialize_collection(self, parsed_data)
         if parsed_data[:pagination]
-          Kaminari.paginate_array(collection, parsed_data[:pagination])
+          PaginatedHer::PaginatedArray.new collection, parsed_data[:pagination]
         else
           collection
         end
