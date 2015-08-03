@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = PaginatedHer::VERSION
   spec.authors       = ["William Ross"]
   spec.email         = ["will@spanner.org"]
-  spec.description   = %q{Adds token auth and pagination to Her}
-  spec.summary       = %q{Adds token auth and pagination to Her}
-  spec.homepage      = ""
+  spec.description   = %q{Adds metadata pagination to Her}
+  spec.summary       = %q{Adds metadata pagination to Her}
+  spec.homepage      = "https://github.com/spanner/paginated_her"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
