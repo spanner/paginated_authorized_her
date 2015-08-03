@@ -2,7 +2,22 @@
 
 This is a bit of extra stuff for the useful but annoyingly unfindable [Her](https://github.com/remiprev/her).
 In this newly simplified version all we do is extract pagination metadata in response to the calls that kaminari will make.
-We do this quite crudely, by monkey-patching Her::Collection. This gem only exists to avoid duplication in our API client libraries.
+We do this quite crudely, by monkey-patching Her::Collection. No changes are required in your code. 
+
+Your api must return something like this:
+
+    meta: {
+      pagination:
+        current_page: 1,
+        per_page: 20,
+        next_page: 2,
+        prev_page: null,
+        total_pages: 28
+        total_count: 556
+      }
+    }
+
+This gem only exists to avoid duplication in our API client libraries.
 
 ## Requirements
 
