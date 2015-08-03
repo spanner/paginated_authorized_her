@@ -1,2 +1,3 @@
+require 'her'
 require 'paginated_her/version'
-require 'her/collection'
+require 'paginated_her/collection'

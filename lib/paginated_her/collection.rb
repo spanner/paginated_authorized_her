@@ -1,5 +1,5 @@
 module Her
-  class Collection < Collection
+  class Collection
 
     def _pagination_data
       metadata[:pagination].presence || {}
