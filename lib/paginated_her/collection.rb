@@ -65,7 +65,7 @@ module Her
     
     def facet(name)
       if facet = facets[name.to_sym]
-        facet[:terms]
+        facet[:buckets]
       else
         {}
       end
